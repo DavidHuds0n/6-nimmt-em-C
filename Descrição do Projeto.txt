@@ -1,0 +1,134 @@
+6 nimmt! (Pega em 6)
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Estruturas que deverão ser criadas usando TAD:
+- Lista Dinâmica (cartas adquiridas pelo jogador, mão do jogador, cartas jogadas em uma rodada)
+	-> Lista * criar()
+	-> int inserirOrdenado(Lista *, struct carta)
+	-> int acessarIndice(Lista *, int, struct carta *)
+	-> int removerIndice(Lista *, int)
+	-> int exibir(Lista *)
+	-> int quantidade(Lista *)
+- Fila Dinâmica (usada para compor e organizar a mesa)
+	-> Fila * criar()
+	-> int inserir(Fila *, struct carta)
+	-> int remover(Fila *, struct carta *) // Já remove e acessa
+	-> int acessar(Fila *, struct carta *)
+	-> int exibir(Fila *)
+	-> int tamanho(Fila *)
+- Pilha Dinâmica (usada para o baralho)
+	-> Pilha * criar()
+	-> int inserir(Pilha *, struct carta)
+	-> int remover(Pilha *, struct carta *) // Já remove e acessa
+	-> void embaralhar(Pilha *)
+	-> int tamanho(Pilha *)
+Essas são as funções mínimas do TAD para o projeto funcionar. Todas deverão ser implementadas.
+
+Nenhuma função adicional deve ser criada no TAD. Caso precise de mais funções para o jogo (e vai precisar), faça-as em um .h separado. Mantenha o isolamento do TAD à todo momento, isto é: você precisa contar a pontuação de alguma coleção? Faça isso usando acessar. Você precisa montar a tela com as várias informações das estruturas? Faça isso usando o exibir. Você precisa montar o baralho inicial? Faça com criar, inserir e embaralhar.
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Estruturas necessárias no main:
+- Mão (Lista *), sempre com cinco cartas: joga uma e compra uma
+- Mesa (Fila **), é um vetor de Filas, use alocação dinâmica
+- Baralho (Pilha *), inicia com 104 cartas embaralhadas, depois distribui 4 para mesa e 10 para cada jogador
+- Coleção dos Jogadores (Lista **), vetor de Listas contendo as cartas adquiridas por cada jogador, use alocação dinâmica
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Estrutura da carta:
+- int numero, número que varia de 1 a 104
+- int bois, número que varia de 1 à 7 (regras de definição no manual)
+- int jogador, número indicando o jogador dono da carta (útil quando for jogar as cartas e colocar nas coleções)
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Vídeo explicando o jogo original: https://www.youtube.com/watch?v=vvzXX9bmwYw
+
+O projeto é o mesmo jogo, exceto que os jogadores (além de um) são todos computadores que jogam aleatoriamente. O jogo comporta até 10 jogadores.
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Avaliação do Projeto:
+Boas práticas (1,5) Vários trechos desse projeto podem ser feitos na força bruta, replicagem eterna de código e outras má práticas. Faça um código generalizado, compreensível e sem gambiarras.
+Preparação (1,5) Tudo inicializado corretamente (Mão, Mesa, Coleções e Baralho) e aleatoriamente quando for o caso (Mão, Mesa e Baralho). A Mão do jogador deve vir organizada de maneira crescente, assim facilita a escolha das cartas e visualização das mesmas. No início da partida o jogador também deverá indicar quantos jogadores-computador terão (de 1 à 9).
+Validação (0,5) Permitir apenas ações que sigam as regras. Isto é, jogador só pode escolher cartas da mão válidas e só pode escolher filas válidas.
+Implementar TAD corretamente (2,0) Respeitar todos os conceitos de TAD, propriedades e implementar corretamente todas as estruturas listadas neste documento.
+Turno (2,0) O jogo é simultaneo, não existe "vez". Entretanto, o fluxo é assim: jogador joga uma carta da Mão, todos os jogadores-computadores também jogam uma carta, tudo isso é revelado e posicionado. Se alguma carta for coletada vão para as respectivas Coleções de quem jogou aquela carta.
+Tela da partida (1,5) Imprimir o tabuleiro corretamente com todas as informações necessárias e todas as opções possíveis.
+Final da Partida (1,0) Saber quando terminar a partida e indicar corretamente os pontos de cada jogador.
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Sobre como usar scanf sem bugar loucamente caso você digite coisas demais, basta colocar isso após um:
+while( getchar() != '\n' );
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Tela (sugestão de como organizar, mas fique a vontade):
+
+[ 78]
+[ 55]
+[ 22]
+[102]
+
+Sua Coleção: 
+
+Mão: [  2] -> [  5] -> [  8] -> [ 44] -> [ 66] -> [ 67] -> [ 72] -> [ 83] -> [ 85] -> [ 89]
+      (1)      (2)      (3)      (4)      (5)      (6)      (7)      (8)      (9)      (10)
+
+Escolha qual carta da sua mão jogar...
+-> 
+
+-=-=-=-=-=-=-=-=-=-=-
+
+Exemplo de turno:
+
+Dado a tela acima, o jogador digitou 4 (carta [ 44], e os demais jogadores jogaram as cartas [ 25], [ 103], [ 40], [ 19], [ 12], [ 33], [ 37]. Vejamos a mesa atualizando carta por carta (lembrando que as cartas são jogadas em ordem). Temos, após o 12:
+[ 78]
+[ 12] (12 entrou aleatoriamente no lugar do 55, por não ser maior que nenhum final de fila, caso fosse o jogador que tivesse feito essa jogada ele escolheria a fila, sem ser aleatório)
+[ 22] 
+[102]
+Agora, após o 19:
+[ 78]
+[ 12] -> [ 19]
+[ 22]
+[102]
+Após o 25:
+[ 78]
+[ 12] -> [ 19]
+[ 22] -> [ 25]
+[102]
+Após o 33:
+[ 78]
+[ 12] -> [ 19]
+[ 22] -> [ 25] -> [ 33]
+[102]
+Após o 37:
+[ 78]
+[ 12] -> [ 19]
+[ 22] -> [ 25] -> [ 33] -> [ 37]
+[102]
+Após o 40:
+[ 78]
+[ 12] -> [ 19]
+[ 22] -> [ 25] -> [ 33] -> [ 37] -> [ 40]
+[102]
+Após o 44: (oh droga, é a carta que jogamos e vai entrar na fila que já tem cinco!)
+[ 78]
+[ 12] -> [ 19]
+[ 44] (fila inteira removida para a nossa coleção, nesse jogo é ruim pontuar)
+[102]
+Após o 103 e tela resultante:
+[ 78]
+[ 12] -> [ 19]
+[ 44]
+[102] -> [ 103]
+
+Sua Coleção: [ 22] -> [ 25] -> [ 33] -> [ 37] -> [ 37]
+
+Mão: [  2] -> [  5] -> [  8] -> [ 66] -> [ 67] -> [ 72] -> [ 83] -> [ 85] -> [ 89]
+      (1)      (2)      (3)      (4)      (5)      (6)      (7)      (8)      (9)
+
+Pronto. Isso é um turno. Repete-se até acabar a mão de todo mundo (10 rodadas). Ao final das partida, exibe todas as pontuações. O objetivo do jogador é ter a menor pontuação.

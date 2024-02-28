@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1709077177 source:c:\users\vitor\desktop\pega em 6\jogo.c
+
+1709078326 source:c:\users\vitor\desktop\pega em 6\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"fila.h"
+	"pilha.h"
+	"jogo.h"
+
+1709077183 source:c:\users\vitor\desktop\pega em 6\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"jogo.h"
+
+1709077399 c:\users\vitor\desktop\pega em 6\fila.h
+	"jogo.h"
+
+1709077681 c:\users\vitor\desktop\pega em 6\jogo.h
+
+1709077026 source:c:\users\vitor\desktop\pega em 6\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"jogo.h"
+
+1709077359 c:\users\vitor\desktop\pega em 6\lista.h
+	"jogo.h"
+
+1709077183 source:c:\users\vitor\desktop\pega em 6\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"jogo.h"
+
+1709078304 c:\users\vitor\desktop\pega em 6\pilha.h
+	"jogo.h"
+

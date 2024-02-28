@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista.h"
+#include "jogo.h"
+
+struct elementoLista{
+    struct carta dados; //define a carta e seus dados como parte do elemento
+    struct elementoLista *prox; //define o apontamento para o próximo elemento da lista
+};
+
+typedef struct elementoLista Elemento; //define Elemento como um tipo
+
+Lista * criarLista(){ //criação da lista de mão de cartas
+    Lista *lista = (Lista *)malloc(sizeof(Lista));
+    if (lista != NULL){
+        *lista = NULL;
+    }
+    return lista;
+}
+
+int inserirOrdenado(Lista *lista, struct carta novosdados){ //inserir as cartas de maneira ordenada na mão
+    if (lista == NULL){
+        return 0;
+    }
+    else if (*lista == NULL){
+        Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
+        novo->dados = novosdados;
+        novo->prox = NULL;
+        *lista = novo;
+        return 1;
+    }
+    else {
+        Elemento *aux = *lista;
+        Elemento *ant = *lista;
+        while (aux != NULL && novosdados.numero > aux->dados.numero){
+            ant = aux;
+            aux = aux->prox;
+        }
+        Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
+        novo->dados = novosdados;
+        novo->prox = aux;
+        ant->prox = novo;
+        return 1;
+    }
+}
+
+int acessarIndice(Lista *lista, int indice, struct carta *acessado){ //acessa e obtem a carta com o índice
+    if (lista == NULL || *lista == NULL){
+         return 0;
+    }
+    else {
+        int cont = 0;
+        Elemento *aux = *lista;
+        while (aux != NULL && cont < indice){
+            aux = aux->prox;
+            cont++;
+        }
+        if (aux != NULL){
+            *acessado = aux->dados;
+        }
+        return 1;
+    }
+}
+
+int removerIndice(Lista *lista, int indice){
+    if (lista == NULL || *lista == NULL){
+        return 0;
+    }
+    else if (indice > (quantidadeLista(lista) - 1)){
+        return 0;
+    }
+    else if (indice == 0){
+        Elemento *aux = *lista;
+        *lista = aux->prox;
+        free(aux);
+    }
+    else {
+        int cont = 0;
+        Elemento *aux = *lista;
+        Elemento *ant = *lista;
+        while (aux != NULL && cont < indice){
+            ant = aux;
+            aux = aux->prox;
+            cont++;
+        }
+        ant->prox = aux->prox;
+        free(aux);
+        return 1;
+    }
+}
+
+int exibirLista(Lista *lista){ //exibe a mão de cartas
+    if (lista == NULL || *lista == NULL){
+        return 0;
+    }
+    else {
+        Elemento *aux = *lista;
+        while (aux != NULL){
+            printf ("%d, %d, %d\n", aux->dados.bois, aux->dados.numero, aux->dados.jogador);
+            aux = aux->prox;
+        }
+        return 1;
+    }
+}
+
+int quantidadeLista(Lista *lista){ //acessa a quantidade de cartas na mão
+    int cont = 0;
+    if (lista == NULL || *lista == NULL){
+        return cont;
+    }
+    else {
+        Elemento *aux = *lista;
+        while (aux != NULL){
+            cont++;
+            aux = aux->prox;
+        }
+        return cont;
+    }
+}
