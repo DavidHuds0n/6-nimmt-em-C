@@ -18,7 +18,7 @@ Lista * criarLista(){ //criação da lista de mão de cartas
     return lista;
 }
 
-int inserirOrdenado(Lista *lista, struct carta novosdados){ //inserir as cartas de maneira ordenada na mão
+int inserirOrdenado(Lista *lista, Carta novosdados){ //inserir as cartas de maneira ordenada na mão
     if (lista == NULL){
         return 0;
     }
@@ -44,7 +44,9 @@ int inserirOrdenado(Lista *lista, struct carta novosdados){ //inserir as cartas 
     }
 }
 
-int acessarIndice(Lista *lista, int indice, struct carta *acessado){ //acessa e obtem a carta com o índice
+int acessarIndice(Lista *lista, int indice, Carta *acessado){ //acessa e obtem a carta com o índice
+    indice -= 1;
+
     if (lista == NULL || *lista == NULL){
          return 0;
     }
@@ -63,6 +65,8 @@ int acessarIndice(Lista *lista, int indice, struct carta *acessado){ //acessa e 
 }
 
 int removerIndice(Lista *lista, int indice){
+    indice -= 1;
+
     if (lista == NULL || *lista == NULL){
         return 0;
     }
@@ -89,19 +93,44 @@ int removerIndice(Lista *lista, int indice){
     }
 }
 
-int exibirLista(Lista *lista){ //exibe a mão de cartas
+int exibirLista(Lista *lista){
     if (lista == NULL || *lista == NULL){
         return 0;
     }
-    else {
-        Elemento *aux = *lista;
-        while (aux != NULL){
-            printf ("%d, %d, %d\n", aux->dados.bois, aux->dados.numero, aux->dados.jogador);
-            aux = aux->prox;
-        }
-        return 1;
+
+    printf("Bois:   ");
+    Elemento *aux = *lista;
+    while(aux != NULL){
+        printf(" {%d}     ", aux->dados.bois);
+        aux = aux->prox;
     }
+    printf("\n");
+
+    printf("Numero: ");
+    aux = *lista;
+    while(aux != NULL){
+        printf("[%3d] ", aux->dados.numero);
+        aux = aux->prox;
+        if(aux == NULL){
+            break;
+        }
+        printf("-> ");
+    }
+    printf("\n");
+
+    printf("Index:  ");
+    int cont = 1;
+    aux = *lista;
+    while(aux != NULL){
+        printf(" (%d)     ", cont);
+        aux = aux->prox;
+        cont++;
+    }
+    printf("\n");
+
+    return 1;
 }
+
 
 int quantidadeLista(Lista *lista){ //acessa a quantidade de cartas na mão
     int cont = 0;

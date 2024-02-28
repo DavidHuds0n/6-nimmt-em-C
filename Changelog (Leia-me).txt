@@ -1,0 +1,13 @@
+O propósito desse arquivo é listar as mudanças que fiz em dado commit do programa. Recomendo dar uma olhada sempre que der um pull no repositório pra se atualizar sobre o estado atual do projeto.
+
+jogo.h - Adicionei o cabeçalho da função para criação de cartas
+
+jogo.c - Implementei a função para criação de cartas
+
+lista.c - Modifiquei a formatação de texto na função exibirLista
+
+fila.c - Modifiquei a estrutura do TAD para se assemelhar mais ao exemplo original de Roberto (com ponteiros específicos para o início e fim da fila) e mudei a formatação de texto na função exibirFila 
+
+pilha.c - Adicionei a linha de código "srand(time(NULL));" no começo da função embaralhar. Sem ela, os valores gerados pela função "rand()%" são sempre os mesmos, pois utiliza a seed default do sistema. Agora, o embaralhamento vai acontecer de maneira mais imprevisível.
+
+main.c - Pedi pro ChatGPT criar um main pra testar todas as funções dos TADs. Funciona! Eu acho...

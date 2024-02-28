@@ -1,16 +1,20 @@
+#ifndef FILA_H
+#define FILA_H
+
 #include "jogo.h"
 
-typedef struct elementoFila *Fila;
+typedef struct fila Fila;
 
-Fila * criarFila();
+Fila *criarFila();
 
-int inserirFila(Fila *, struct carta);
+int inserirFila(Fila*, Carta);
 
-int removerFila(Fila *, struct carta *);
+int removerFila(Fila*, Carta*);
 
-int acessarFila(Fila *, struct carta *);
+int acessarFila(Fila*, Carta*);
 
-int exibirFila(Fila *);
+int exibirFila(Fila*);
 
-int tamanhoFila(Fila *);
+int tamanhoFila(Fila*);
 
+#endif /* FILA_H */

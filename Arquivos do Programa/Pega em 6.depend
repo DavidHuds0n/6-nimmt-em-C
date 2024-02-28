@@ -39,3 +39,47 @@
 1709078304 c:\users\vitor\desktop\pega em 6\pilha.h
 	"jogo.h"
 
+1709159069 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"jogo.h"
+
+1709157272 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.h
+	"jogo.h"
+
+1709153994 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.h
+
+1709153549 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.c
+	<stdio.h>
+	<stdlib.h>
+	"jogo.h"
+
+1709160899 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"jogo.h"
+
+1709154083 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.h
+	"jogo.h"
+
+1709161364 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"jogo.h"
+
+1709154058 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.h
+	"jogo.h"
+
+1709160454 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"jogo.h"
+

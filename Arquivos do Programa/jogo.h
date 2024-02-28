@@ -1,11 +1,15 @@
-#ifndef MINHA_STRUCT_H
-#define MINHA_STRUCT_H
+#ifndef JOGO_H
+#define JOGO_H
 
-struct carta {
-    int numero; //varia de 1 a 104
-    int bois; //varia de 1 a 7
-    int jogador; //indica o dono dessa carta
-};
+// Definição da estrutura Carta
+typedef struct carta {
+    int numero; // Varia de 1 a 104
+    int bois;   // Varia de 1 a 7
+    int jogador; // Indica o dono dessa carta
+} Carta;
 
-#endif
+// Função para criar uma nova carta
+Carta criarCarta(int, int);
+
+#endif /* JOGO_H */
 

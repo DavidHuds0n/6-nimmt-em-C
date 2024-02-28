@@ -3,89 +3,117 @@
 #include "fila.h"
 #include "jogo.h"
 
-struct elementoFila {
+typedef struct elementoFila {
     struct carta dados;
-    struct elementoFila *prox;
+    struct elemento *prox;
+} Elemento;
+
+struct fila {
+	struct elementoFila *inicio;
+	struct elementoFila *fim;
 };
 
-typedef struct elementoFila Elemento;
-
-Fila * criarFila(){
-    Fila *fila = (Fila *)malloc(sizeof(Fila));
+Fila* criarFila(){
+    Fila *fila = (Fila*)malloc(sizeof(Fila));
     if (fila != NULL){
-        *fila = NULL;
+        fila->inicio = NULL;
+		fila->fim = NULL;
     }
     return fila;
 }
 
-int inserirFila(Fila *fila, struct carta novosdados){
+int inserirFila(Fila *fila, Carta novosdados){
     if (fila == NULL){
         return 0;
     }
-    else if (*fila == NULL){
-        Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
+    else{
+        Elemento *novo = (Elemento*)malloc(sizeof(Elemento));
+		if (novo == NULL) return 0;
         novo->dados = novosdados;
         novo->prox = NULL;
-        *fila = novo;
-        return 1;
-    }
-    else {
-        Elemento *aux = *fila;
-        while (aux->prox != NULL){
-            aux = aux->prox;
-        }
-        Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
-        novo->dados = novosdados;
-        novo->prox = aux->prox;
-        aux->prox = novo;
-        return 1;
+		if(fila->fim == NULL){
+			fila->inicio = novo;
+		}
+		else{
+			fila->fim->prox = novo;
+		}
+		fila->fim = novo;
+		return 1;
     }
 }
 
-int removerFila(Fila *fila, struct carta *acessado){
-    if (fila == NULL || *fila == NULL){
+int removerFila(Fila *fila, Carta *acessado){
+    if (fila == NULL || fila->inicio == NULL){
          return 0;
     }
     else {
-        Elemento *aux = *fila;
-        *acessado = (*fila)->dados;
-        *fila = aux->prox;
+        Elemento *aux = fila->inicio;
+        *acessado = fila->inicio->dados;
+        fila->inicio = fila->inicio->prox;
+		if (fila->inicio == NULL){
+			fila->fim = NULL;
+		}
         free(aux);
         return 1;
     }
 }
 
-int acessarFila(Fila *fila, struct carta *acessado){
-    if (fila == NULL || *fila == NULL){
+int acessarFila(Fila *fila, Carta *acessado){
+    if (fila == NULL || fila->inicio == NULL){
          return 0;
     }
     else {
-        *acessado = (*fila)->dados;
+        *acessado = fila->inicio->dados;
         return 1;
     }
 }
 
-int exibirFila(Fila *fila){
-    if (fila == NULL || *fila == NULL){
+int exibirFila(Fila *fila) {
+    if (fila == NULL || fila->inicio == NULL) {
         return 0;
     }
-    else {
-        Elemento *aux = *fila;
-        while (aux != NULL){
-            printf ("%d, %d, %d\n", aux->dados.bois, aux->dados.numero, aux->dados.jogador);
-            aux = aux->prox;
-        }
-        return 1;
+
+    printf("Bois:   ");
+    Elemento *aux = fila->inicio;
+    while (aux != NULL) {
+        printf(" {%d}     ", aux->dados.bois);
+        aux = aux->prox;
     }
+    printf("\n");
+
+    printf("Numero: ");
+    aux = fila->inicio;
+    while (aux != NULL) {
+        printf("[%3d] ", aux->dados.numero); // Usando a formatação %6d para imprimir com 6 caracteres
+        aux = aux->prox;
+        if (aux == NULL) {
+            break;
+        }
+        printf("-> ");
+    }
+    printf("\n");
+
+    printf("Index:  ");
+    int cont = 1;
+    aux = fila->inicio;
+    while (aux != NULL) {
+        printf(" (%d)     ", cont);
+        aux = aux->prox;
+        cont++;
+    }
+    printf("\n");
+
+    return 1;
 }
+
 
 int tamanhoFila(Fila *fila){
     int tam = 0;
-    if (fila == NULL || *fila == NULL){
+    if (fila == NULL || fila->inicio == NULL){
         return tam;
     }
     else {
-        Elemento *aux = *fila;
+        Elemento *aux = fila->inicio;
         while (aux != NULL){
             tam++;
             aux = aux->prox;

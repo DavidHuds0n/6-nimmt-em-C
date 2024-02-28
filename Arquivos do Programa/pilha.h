@@ -1,18 +1,21 @@
+#ifndef PILHA_H
+#define PILHA_H
+
 #include "jogo.h"
 
 typedef struct elementoPilha *Pilha;
 
-Pilha * criarPilha();
+Pilha *criarPilha();
 
-int inserirPilha(Pilha *, struct carta);
+int inserirPilha(Pilha*, Carta);
 
-int removerPilha(Pilha *, struct carta *); // Já remove e acessa
+int removerPilha(Pilha*, Carta*); // Já remove e acessa
 
-void embaralharPilha(Pilha *);
+void embaralharPilha(Pilha*);
 
-int tamanhoPilha(Pilha *);
+int tamanhoPilha(Pilha*);
 
-
-//////////////////////////
-void exibirPilha(Pilha *);
+void exibirPilha(Pilha*);
 // Exibir desnecessário, ta aí só pra testes de controle
+
+#endif /* PILHA_H */
