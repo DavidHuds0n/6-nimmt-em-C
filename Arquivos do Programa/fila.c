@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
-#include "jogo.h"
+#include "carta.h"
 
 typedef struct elementoFila {
     struct carta dados;

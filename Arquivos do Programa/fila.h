@@ -1,7 +1,7 @@
 #ifndef FILA_H
 #define FILA_H
 
-#include "jogo.h"
+#include "carta.h"
 
 typedef struct fila Fila;
 

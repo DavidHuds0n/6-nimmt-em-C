@@ -1,7 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include "jogo.h"
+#include "carta.h"
 
 typedef struct elementoLista *Lista; //define uma lista de elementos (cartas) como um tipo
 //a lista de cartas serve para: as cartas adquiridas pelo jogador, mão do jogador, cartas jogadas em uma rodada.

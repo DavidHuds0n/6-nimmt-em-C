@@ -1,7 +1,7 @@
 #ifndef PILHA_H
 #define PILHA_H
 
-#include "jogo.h"
+#include "carta.h"
 
 typedef struct elementoPilha *Pilha;
 

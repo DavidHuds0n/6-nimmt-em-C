@@ -1,13 +1,13 @@
 O propósito desse arquivo é listar as mudanças que fiz em dado commit do programa. Recomendo dar uma olhada sempre que der um pull no repositório pra se atualizar sobre o estado atual do projeto.
 
-jogo.h - Adicionei o cabeçalho da função para criação de cartas
+carta.h - NOVO HEADER! A implementação do struct carta no jogo.h estava resultando em conflitos com a inclusão do pilha.h, lista.h e fila.h (necessários para declarar os cabeçalhos das funções contidas no jogo.h). Para resolver o conflito, movi a definição da estrutura da carta para uma biblioteca própria e a inclui ou no lugar ou junto de "jogo.h" conforme as necessidades de cada arquivo;
 
-jogo.c - Implementei a função para criação de cartas
+jogo.h - Agora inclui pilha, fila, lista e carta.h e contém as declarações das funções setBaralho, criarListaJogadores e preencherMaos;
 
-lista.c - Modifiquei a formatação de texto na função exibirLista
+jogo.c - Agora inclui também carta.h e implementa todas as novas funções declaradas no jogo.h;
 
-fila.c - Modifiquei a estrutura do TAD para se assemelhar mais ao exemplo original de Roberto (com ponteiros específicos para o início e fim da fila) e mudei a formatação de texto na função exibirFila 
+lista.c/h, fila.c/h, pilha.c/h - Todos incluem "carta.h" no lugar de "jogo.h" agora;
 
-pilha.c - Adicionei a linha de código "srand(time(NULL));" no começo da função embaralhar. Sem ela, os valores gerados pela função "rand()%" são sempre os mesmos, pois utiliza a seed default do sistema. Agora, o embaralhamento vai acontecer de maneira mais imprevisível.
+lista.c - Atualizei a função inserirOrdenado para poder lidar com novas cartas cujo numero seja menor que o numero do primeiro elemento atual da lista;
 
-main.c - Pedi pro ChatGPT criar um main pra testar todas as funções dos TADs. Funciona! Eu acho...
+main.c - Testa o setBaralho, a criação da lista de jogadores e o preenchimento da mão de cada jogador.

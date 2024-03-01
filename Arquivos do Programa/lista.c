@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"
-#include "jogo.h"
+#include "carta.h"
 
 struct elementoLista{
     struct carta dados; //define a carta e seus dados como parte do elemento
@@ -18,31 +18,36 @@ Lista * criarLista(){ //criação da lista de mão de cartas
     return lista;
 }
 
-int inserirOrdenado(Lista *lista, Carta novosdados){ //inserir as cartas de maneira ordenada na mão
-    if (lista == NULL){
+int inserirOrdenado(Lista *lista, Carta novosdados) {
+    if (lista == NULL) {
         return 0;
-    }
-    else if (*lista == NULL){
+    } else {
         Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
+        if (novo == NULL) {
+            return 0; // Falha na alocação de memória
+        }
         novo->dados = novosdados;
-        novo->prox = NULL;
-        *lista = novo;
-        return 1;
-    }
-    else {
+
+        // Caso especial: inserir no início da lista
+        if (*lista == NULL || novosdados.numero <= (*lista)->dados.numero) {
+            novo->prox = *lista;
+            *lista = novo;
+            return 1;
+        }
+
+        // Inserir em outra posição da lista
         Elemento *aux = *lista;
-        Elemento *ant = *lista;
-        while (aux != NULL && novosdados.numero > aux->dados.numero){
+        Elemento *ant = NULL;
+        while (aux != NULL && novosdados.numero > aux->dados.numero) {
             ant = aux;
             aux = aux->prox;
         }
-        Elemento *novo = (Elemento *)malloc(sizeof(Elemento));
-        novo->dados = novosdados;
         novo->prox = aux;
         ant->prox = novo;
         return 1;
     }
 }
+
 
 int acessarIndice(Lista *lista, int indice, Carta *acessado){ //acessa e obtem a carta com o índice
     indice -= 1;

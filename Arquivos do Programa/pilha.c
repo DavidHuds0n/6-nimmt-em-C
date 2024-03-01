@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include "pilha.h"
-#include "jogo.h"
+#include "carta.h"
 
 struct elementoPilha {
     struct carta dados;
