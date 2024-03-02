@@ -45,16 +45,16 @@
 	"fila.h"
 	"carta.h"
 
-1709259574 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.h
+1709404555 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.h
 	"carta.h"
 
-1709267543 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.h
+1709416382 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.h
 	"lista.h"
 	"pilha.h"
 	"fila.h"
 	"carta.h"
 
-1709267371 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.c
+1709416373 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
@@ -63,25 +63,26 @@
 	"carta.h"
 	"jogo.h"
 
-1709266601 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.c
+1709413413 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
 	"carta.h"
 
-1709259570 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.h
+1709409754 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.h
 	"carta.h"
 
-1709267645 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\main.c
+1709416365 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	"lista.h"
 	"pilha.h"
+	"fila.h"
 	"carta.h"
 	"jogo.h"
 
-1709259576 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.h
+1709404482 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.h
 	"carta.h"
 
 1709259864 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.c

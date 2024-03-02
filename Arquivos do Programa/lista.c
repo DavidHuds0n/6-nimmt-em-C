@@ -75,7 +75,7 @@ int removerIndice(Lista *lista, int indice){
     if (lista == NULL || *lista == NULL){
         return 0;
     }
-    else if (indice > (quantidadeLista(lista) - 1)){
+    else if (indice > (tamanhoLista(lista) - 1)){
         return 0;
     }
     else if (indice == 0){
@@ -137,7 +137,7 @@ int exibirLista(Lista *lista){
 }
 
 
-int quantidadeLista(Lista *lista){ //acessa a quantidade de cartas na mão
+int tamanhoLista(Lista *lista){ //acessa a quantidade de cartas na mão
     int cont = 0;
     if (lista == NULL || *lista == NULL){
         return cont;

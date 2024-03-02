@@ -6,110 +6,124 @@
 #include "carta.h"
 #include "jogo.h"
 
-// Função para criar uma nova carta
-Carta criarCarta(int numero, int jogador) {
-    Carta novaCarta; // Cria uma nova carta
+#define QTD_CARTAS 104  // Quantidade de cartas do baralho
+#define MAO_INIT 10     // Quantidade inicial de cartas na mão de um jogador
+#define QTD_FILAS 4     // Quantidade de filas na mesa
+#define MAX_ROUNDS 10   // Quantidade máxima de partidas do jogo
+
+/* FUNÇÕES PARA A PREPARAÇÃO DO JOGO */
+
+/* Cria uma nova carta com número e jogador especificados */
+Carta criarCarta(int numero) {
+    Carta novaCarta;
     novaCarta.numero = numero; // Define o número da carta
-    novaCarta.jogador = jogador; // Define o jogador dono da carta
+    novaCarta.jogador = -1; // Define o jogador dono da carta
 
-    // Cada carta tem pelo menos uma cabeça de boi
-    novaCarta.bois = 1;
+    /* Define a quantidade de cabeças de boi com base no número da carta */
+    novaCarta.bois = 1; // Toda carta tem pelo menos 1 boi
+    if (numero % 10 == 5) novaCarta.bois += 1; // Terminadas em 5 tem 2 bois
+    if (numero % 10 == 0 && numero != 0) novaCarta.bois += 2; // Múltiplos de 10 tem 3 bois
+    if (numero >= 11 && numero <= 99 && numero % 11 == 0) novaCarta.bois += 4; // Dígitos repetidos (exceto 0) tem 5 bois
+    if (numero == 55) novaCarta.bois += 1; // Número 55 é um caso especial (termina em 5 e tem digitos repetidos), logo tem 7 bois
 
-    // Condições especiais para atribuir cabeças de boi
-    // Números terminados em 5 têm duas cabeças de boi
-    if (numero % 10 == 5) {
-        novaCarta.bois += 1;
-    }
-
-    // Múltiplos de 10 têm três cabeças de boi
-    if (numero % 10 == 0 && numero != 0) {
-        novaCarta.bois += 2;
-    }
-
-    // Dígitos repetidos (exceto 0) têm cinco cabeças de boi
-    if(numero >= 11 && numero <= 99 && numero % 11 == 0) {
-        novaCarta.bois += 4;
-    }
-
-    // O número 55 tem uma cabeça de boi adicional
-    if(numero == 55){
-        novaCarta.bois += 1;
-    }
-
-    // Retorna a nova carta criada
     return novaCarta;
 }
 
-// Função para criar o baralho preenchido e embaralhado
-void setBaralho(Pilha* baralho){
-    for(int i = 1; i <= 104 ; i++){
-        Carta novaCarta = criarCarta(i, -1); // Todas as cartas são criadas inicialmente com o campo jogador = -1, pois não pertencem a nenhum jogador
+/* Preenche uma pilha com as 104 cartas do baralho e as embaralha */
+void inicializarBaralho(Pilha* baralho){
+    for(int i = 1; i <= QTD_CARTAS ; i++){
+        Carta novaCarta = criarCarta(i); // -1 signifca que não há jogador associado à carta
         inserirPilha(baralho, novaCarta);
-        embaralharPilha(baralho);
     }
+    embaralharPilha(baralho);
 }
 
-// Função para criar uma lista de jogadores contendo as mãos de cada um
+/* Cria uma lista de jogadores com uma lista de cartas para cada um */
 Lista** criarListaJogadores(int qtd_jogadores){
-    // Verificar se qtd_jogadores é válida
-    if (qtd_jogadores <= 0 || qtd_jogadores > 10) {
-        printf("Número inválido de jogadores.\n");
-        return NULL;
-    }
-
-    // Alocar memória para a lista de jogadores
+    /* Aloca memória para a lista de jogadores */
     Lista** listaJogadores = (Lista**)malloc(sizeof(Lista*) * qtd_jogadores);
-    if(listaJogadores == NULL) {
-        printf("Erro ao alocar memória para lista de jogadores.\n");
-        return NULL;
-    }
+    if(listaJogadores == NULL) return NULL;
 
-    // Inicializar cada lista de jogador
+    /* Inicializa a lista de cada jogador */
     for(int i = 0 ; i < qtd_jogadores ; i++){
         listaJogadores[i] = criarLista();
-        if(listaJogadores[i] == NULL) {
-            printf("Erro ao criar lista de mão para jogador %d.\n", i);
-            return NULL;
-        }
+        if(listaJogadores[i] == NULL) return NULL;
     }
 
     return listaJogadores;
 }
 
-// Função para preencher as mãos de cada jogador com 10 cartas cada
-int preencherMaos(int qtd_jogadores, Lista** listaJogadores, Pilha* baralho){
-    // Verificar se a lista de jogadores e a pilha de baralho são válidas
-    if (listaJogadores == NULL || baralho == NULL) {
-        printf("Lista de jogadores ou pilha de baralho inválida.\n");
-        return 0;
-    }
-
-    // Verificar se a quantidade de jogadores é válida
-    if (qtd_jogadores <= 0 || qtd_jogadores > 10) {
-        printf("Número inválido de jogadores.\n");
-        return 0;
-    }
-
-    // Preencher as mãos de cada jogador com 10 cartas
+/* Distribui 10 cartas para cada jogador a partir do baralho */
+int distribuirCartasJogadores(Lista** maosJogadores, Pilha* baralho, int qtd_jogadores){
+    /* Distribui 10 cartas para cada jogador */
     for(int i = 0 ; i < qtd_jogadores ; i++){
-        for(int j = 0 ; j < 10 ; j++){
+        for(int j = 0 ; j < MAO_INIT ; j++){
             Carta cartaRemovida;
-            if (!removerPilha(baralho, &cartaRemovida)) {
-                printf("Erro ao remover carta do baralho.\n");
-                return 0;
-            }
+            if (!removerPilha(baralho, &cartaRemovida)) return 0;
 
-            cartaRemovida.jogador = i+1;
+            cartaRemovida.jogador = i;
 
-            if (!inserirOrdenado(listaJogadores[i], cartaRemovida)) {
-                printf("Erro ao inserir carta na mão do jogador.\n");
-                return 0;
-            }
-
+            if (!inserirOrdenado(maosJogadores[i], cartaRemovida)) return 0;
         }
     }
 
     return 1;
 }
 
+/* Cria um vetor de filas representando a mesa */
+Fila** criarMesa(){
+    Fila** mesa = (Fila**)malloc(sizeof(Fila*) * QTD_FILAS);
+    if (mesa == NULL) return NULL;
 
+    /* Inicializa cada fila da mesa */
+    for(int i = 0 ; i < QTD_FILAS ; i++){
+        mesa[i] = criarFila();
+        if (mesa[i] == NULL) return NULL;
+    }
+
+    return mesa;
+}
+
+/* Insere a primeira carta de cada fila da mesa */
+int inserirCartasMesa(Fila** mesa, Pilha* baralho){
+    /* Insere uma carta do baralho em cada fila da mesa */
+    for(int i = 0 ; i < QTD_FILAS ; i++){
+        Carta cartaRemovida;
+        if(!removerPilha(baralho, &cartaRemovida)) return 0;
+        if(!inserirFila(mesa[i], cartaRemovida)) return 0;
+    }
+
+    return 1;
+}
+
+/* FUNÇÕES PARA RODAR O JOGO */
+
+/* Retira as cartas de uma fila da mesa e as armazena em uma lista de cartas do jogador */
+int puxarCartasFila(Fila** mesa, Lista** colecaoCartasPuxadas, int indiceJogador, int indiceFilaMesa){
+    /* Verifica se o índice do jogador está dentro do intervalo válido */
+    if (indiceJogador < 0 || indiceJogador > 9) {
+        printf("Índice de jogador inválido.\n");
+        return 0; // Retorna 0 indicando falha
+    }
+
+    /* Verifica se o índice da fila está dentro do intervalo válido */
+    if (indiceFilaMesa < 0 || indiceFilaMesa >= 4) {
+        printf("Índice de fila inválido.\n");
+        return 0; // Retorna 0 indicando falha
+    }
+
+    int qtd_Fila = tamanhoFila(mesa[indiceFilaMesa]);
+    for(int i = 0 ; i < qtd_Fila ; i++){
+        Carta cartaRemovida;
+        if (!removerFila(mesa[indiceFilaMesa], &cartaRemovida)) {
+        printf("Erro ao remover carta da fila.\n");
+        return 0; // Retorna 0 indicando falha
+        }
+        if (!inserirOrdenado(colecaoCartasPuxadas[indiceJogador], cartaRemovida)) {
+            printf("Erro ao inserir carta na coleção do jogador.\n");
+            return 0; // Retorna 0 indicando falha
+        }
+    }
+
+    return 1;
+}
