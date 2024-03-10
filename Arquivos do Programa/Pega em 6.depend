@@ -39,31 +39,32 @@
 1709078304 c:\users\vitor\desktop\pega em 6\pilha.h
 	"jogo.h"
 
-1709259598 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.c
+1710107305 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
 	"carta.h"
 
-1709404555 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.h
+1710107308 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\fila.h
 	"carta.h"
 
-1709416382 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.h
+1710107879 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.h
 	"lista.h"
 	"pilha.h"
 	"fila.h"
 	"carta.h"
 
-1709416373 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.c
+1710107722 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\jogo.c
 	<stdio.h>
 	<stdlib.h>
+	<conio.h>
 	"lista.h"
 	"pilha.h"
 	"fila.h"
 	"carta.h"
 	"jogo.h"
 
-1709413413 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.c
+1710101920 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
@@ -72,7 +73,7 @@
 1709409754 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\lista.h
 	"carta.h"
 
-1709416365 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\main.c
+1710107772 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -82,10 +83,10 @@
 	"carta.h"
 	"jogo.h"
 
-1709404482 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.h
+1710107047 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.h
 	"carta.h"
 
-1709259864 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.c
+1710107056 source:c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\pilha.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -93,4 +94,106 @@
 	"carta.h"
 
 1709259450 c:\users\outer\onedrive\햞ea de trabalho\trabalho de laed\arquivos do programa\carta.h
+
+1709508619 source:c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"carta.h"
+
+1709508619 c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\fila.h
+	"carta.h"
+
+1709259450 c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\carta.h
+
+1709495316 source:c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"carta.h"
+
+1709409754 c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\lista.h
+	"carta.h"
+
+1709259864 source:c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"carta.h"
+
+1709404482 c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\pilha.h
+	"carta.h"
+
+1709510834 source:c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\jogo.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1709513271 c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\jogo.h
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+
+1709496266 source:c:\users\vitor\desktop\trabalho de laed (02-03-24)\trabalho de laed\arquivos do programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1709508620 source:c:\users\vitor\desktop\trabalho de laed\arquivos do programa\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"carta.h"
+
+1709508620 c:\users\vitor\desktop\trabalho de laed\arquivos do programa\fila.h
+	"carta.h"
+
+1709259450 c:\users\vitor\desktop\trabalho de laed\arquivos do programa\carta.h
+
+1709495318 source:c:\users\vitor\desktop\trabalho de laed\arquivos do programa\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"carta.h"
+
+1709409754 c:\users\vitor\desktop\trabalho de laed\arquivos do programa\lista.h
+	"carta.h"
+
+1709496268 source:c:\users\vitor\desktop\trabalho de laed\arquivos do programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1709404482 c:\users\vitor\desktop\trabalho de laed\arquivos do programa\pilha.h
+	"carta.h"
+
+1709639818 c:\users\vitor\desktop\trabalho de laed\arquivos do programa\jogo.h
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+
+1709259864 source:c:\users\vitor\desktop\trabalho de laed\arquivos do programa\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"carta.h"
 

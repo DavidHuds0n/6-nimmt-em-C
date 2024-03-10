@@ -48,10 +48,7 @@ int inserirOrdenado(Lista *lista, Carta novosdados) {
     }
 }
 
-
 int acessarIndice(Lista *lista, int indice, Carta *acessado){ //acessa e obtem a carta com o índice
-    indice -= 1;
-
     if (lista == NULL || *lista == NULL){
          return 0;
     }
@@ -70,8 +67,6 @@ int acessarIndice(Lista *lista, int indice, Carta *acessado){ //acessa e obtem a
 }
 
 int removerIndice(Lista *lista, int indice){
-    indice -= 1;
-
     if (lista == NULL || *lista == NULL){
         return 0;
     }
@@ -127,7 +122,7 @@ int exibirLista(Lista *lista){
     int cont = 1;
     aux = *lista;
     while(aux != NULL){
-        printf(" (%d)     ", cont);
+        printf("(%3d)    ", cont);
         aux = aux->prox;
         cont++;
     }
@@ -135,7 +130,6 @@ int exibirLista(Lista *lista){
 
     return 1;
 }
-
 
 int tamanhoLista(Lista *lista){ //acessa a quantidade de cartas na mão
     int cont = 0;

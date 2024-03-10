@@ -10,7 +10,5 @@ int inserirPilha(Pilha*, Carta);
 int removerPilha(Pilha*, Carta*); // Já remove e acessa
 void embaralharPilha(Pilha*);
 int tamanhoPilha(Pilha*);
-void exibirPilha(Pilha*); // Exibir desnecessário, ta aí só pra testes de controle
-
 
 #endif /* PILHA_H */

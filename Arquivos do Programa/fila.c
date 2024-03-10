@@ -3,15 +3,6 @@
 #include "fila.h"
 #include "carta.h"
 
-typedef struct elementoFila {
-    struct carta dados;
-    struct elemento *prox;
-} Elemento;
-
-struct fila {
-	struct elementoFila *inicio;
-	struct elementoFila *fim;
-};
 
 Fila* criarFila(){
     Fila *fila = (Fila*)malloc(sizeof(Fila));
@@ -97,7 +88,7 @@ int exibirFila(Fila *fila) {
     int cont = 1;
     aux = fila->inicio;
     while (aux != NULL) {
-        printf(" (%d)     ", cont);
+        printf("(%3d)    ", cont);
         aux = aux->prox;
         cont++;
     }

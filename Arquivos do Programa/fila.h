@@ -3,6 +3,18 @@
 
 #include "carta.h"
 
+// PERGUNTAR PRA ROBERTO SE ISSO PODE:
+typedef struct elementoFila {
+    struct carta dados;
+    struct elemento *prox;
+} Elemento;
+
+struct fila {
+	struct elementoFila *inicio;
+	struct elementoFila *fim;
+};
+///////////////////////////////////////
+
 typedef struct fila Fila;
 
 Fila *criarFila();
