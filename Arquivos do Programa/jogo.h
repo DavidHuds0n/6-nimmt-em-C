@@ -42,7 +42,7 @@ void exibirMesa(Fila **, Lista **, Lista **, Lista*);
 void jogarTurno(int, Lista **, Lista *);
 
 // Insere na mesa as cartas jogadas naquele turno
-int inserirMesa(int, Fila**, Lista**, Lista*);
+int inserirMesa(int, Fila**, Lista**, Lista*, Lista**);
 
 // Função onde o jogo acontece
 int jogar(int, Pilha *, Lista **, Fila **, Lista **);

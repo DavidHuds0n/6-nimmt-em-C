@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <unistd.h>
 #include "lista.h"
 #include "pilha.h"
 #include "fila.h"
@@ -11,6 +12,7 @@
 #define MAO_INIT 10     // Quantidade inicial de cartas na mão de um jogador
 #define QTD_FILAS 4     // Quantidade de filas na mesa
 #define MAX_ROUNDS 10   // Quantidade máxima de partidas do jogo
+#define TICK 1          // Quantidade de segundos para o sleep
 
 /* FUNÇÕES PARA A PREPARAÇÃO DO JOGO */
 
@@ -170,7 +172,9 @@ void exibirMesa(Fila** mesa, Lista **maosJogadores, Lista **colecaoCartasPuxadas
     // Exibe as filas que estão na mesa
     for(int i = 0 ; i < 4 ; i++){
         printf("[FILA %d]\n", i+1);
-        exibirFila(mesa[i]);
+        if(tamanhoFila(mesa[i]) != 0) exibirFila(mesa[i]);
+        else printf("(Jogador pegou as cartas da fila)\n");
+
         printf("\n");
     }
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
@@ -185,7 +189,7 @@ void exibirMesa(Fila** mesa, Lista **maosJogadores, Lista **colecaoCartasPuxadas
     // Exibe a coleção do jogador
     printf("[SUA COLEÇÃO]\n");
     if(!exibirLista(colecaoCartasPuxadas[0])){
-        printf("(Você não puxou nenhuma carta)\n");
+        printf("(Você não pegou nenhuma carta)\n");
     }
     printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
 }
@@ -200,7 +204,7 @@ void jogarTurno(int qtd_jogadores, Lista **maosJogadores, Lista *cartasTurno){
             scanf ("%d", &escolha);
             escolha--;
         if (escolha < 0 || escolha > tamanhoLista(maosJogadores[0])-1) {
-            printf ("Escolha um número válido.");
+            printf ("Escolha um número válido.\n");
         }
     } while (escolha < 0 || escolha > tamanhoLista(maosJogadores[0])-1);
 
@@ -220,7 +224,7 @@ void jogarTurno(int qtd_jogadores, Lista **maosJogadores, Lista *cartasTurno){
     }
 }
 
-int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Lista *cartasTurno){
+int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Lista *cartasTurno, Lista **maosJogadores){
     Carta guardarUltima;
     Carta guardarCarta;
 
@@ -252,7 +256,6 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
                     printf ("Não foi possível inserir a carta.");
                     return 0;
                 }
-                system("cls");
             }
             else {
                 escolha = rand()%4;
@@ -261,12 +264,14 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
                     return 0;
                 }
             }
-
+            sleep(TICK);
+            system("cls");
+            exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
+            sleep(TICK);
             if (!inserirFila(mesa[escolha], guardarCarta)){
                 printf ("Não foi possível inserir a carta.");
                 return 0;
             }
-            system("cls");
         }
 
         // Caso o jogador seja obrigado a inserir uma carta numa fila de tamanho 5
@@ -274,18 +279,24 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
             if (!puxarCartasFila(mesa, colecaoCartasPuxadas, guardarCarta.jogador, index, qtd_jogadores)){
                 printf ("Erro ao pegar a coleção de cartas.");
             }
+            sleep(TICK);
+            system("cls");
+            exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
+            sleep(TICK);
             if (!inserirFila(mesa[index], guardarCarta)){
                 printf ("Não foi possível inserir a carta.");
                 return 0;
             }
-            system("cls");
         }
 
         // Caso a carta possa ser inserida na fila normalmente
         else {
             inserirFila(mesa[index], guardarCarta);
         }
+        sleep(TICK);
         system("cls");
+        exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
+        sleep(TICK);
     }
     return 1;
 }
@@ -303,7 +314,7 @@ int jogar(int qtd_jogadores, Pilha *baralho, Lista **maosJogadores, Fila **mesa,
         // Joga o turno de todos os jogadores da partida
         jogarTurno(qtd_jogadores, maosJogadores, cartasTurno);
 
-        if (!inserirMesa(qtd_jogadores, mesa, colecaoCartasPuxadas, cartasTurno)) return 0;
+        if (!inserirMesa(qtd_jogadores, mesa, colecaoCartasPuxadas, cartasTurno, maosJogadores)) return 0;
 
         printf ("\n");
         exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
@@ -333,7 +344,7 @@ void fimJogo (int qtd_jogadores, Lista **colecaoCartasPuxadas){
     for (int i = 0; i < qtd_jogadores; i++){
         printf ("[COLEÇÃO DO JOGADOR %d]\n", (i + 1));
         if (!exibirLista(colecaoCartasPuxadas[i])){
-            printf ("(vazia)\n");
+            printf ("(Não pegou nenhuma carta)\n");
         }
         printf ("\nSua pontuação final é %d.\n", contarPontos(colecaoCartasPuxadas[i]));
         printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
