@@ -1,11 +1,5 @@
 O propósito desse arquivo é listar as mudanças que fiz em dado commit do programa. Recomendo dar uma olhada sempre que der um pull no repositório pra se atualizar sobre o estado atual do projeto.
 
-carta.h -> NOVO HEADER! A implementação do struct carta no jogo.h estava resultando em conflitos com a inclusão do pilha.h, lista.h e fila.h (necessários para declarar os cabeçalhos das funções contidas no jogo.h). Para resolver o conflito, movi a definição da estrutura da carta para uma biblioteca própria e a inclui ou no lugar ou junto de "jogo.h" conforme as necessidades de cada arquivo;
-
-jogo.h -> Contém agora as declarações das funções inicializarBaralho, criarListaJogadores, distribuirCartasJogadores, criarMesa, inserirCartasMesa e puxarCartasFila;
-	nota: Declarei o cabeçalho de uma possível função "jogarPartida" com comentários sugerindo como ela pode funcionar ao lado. Se parecer que faz sentido pra ti, pode se guiar por ela.
-
-jogo.c -> Agora implementa todas as novas funções declaradas no jogo.h;
-	nota: Apesar dela estar desenvolvida no código, não pude testar a função "puxarCartasFila" por ainda não ter desenvolvido um método de inserir as cartas dos jogadores nas filas da mesa. Por precaução, dá uma revisada nesse algoritmo e testa ele quando possível.
-
-main.c -> Inicializa o baralho, cria um vetor de listas para armazenar as mãos dos jogadores, cria a mesa, preenche as filas e cria um vetor de listas para armazenar as cartas puxadas por cada jogador em listas.
+-> Funções jogarTurno e inserirMesa corrigidas
+-> Função exibirMesa atualizada para imprimir informações úteis de forma organizada
+-> Agora o programa exibe cada jogada de carta em ordem para que o usuário visualize melhor o decorrer do jogo
