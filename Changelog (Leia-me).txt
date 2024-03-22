@@ -1,5 +1,6 @@
 O propósito desse arquivo é listar as mudanças que fiz em dado commit do programa. Recomendo dar uma olhada sempre que der um pull no repositório pra se atualizar sobre o estado atual do projeto.
 
--> Funções jogarTurno e inserirMesa corrigidas
--> Função exibirMesa atualizada para imprimir informações úteis de forma organizada
--> Agora o programa exibe cada jogada de carta em ordem para que o usuário visualize melhor o decorrer do jogo
+-> TAD da fila corrigido para funcionar como o esperado na lógica de jogo
+-> "carta.h" foi alterado para "structs_auxiliares.h" e agora contém a estrutura de um elemento genérico para todos os TADs do programa, além da estrutura da carta
+-> Ajustes gerais foram feitos na impressão de informações no terminal
+-> Corrigidos erros de sintaxe pelo código-fonte como um todo
