@@ -4,11 +4,11 @@
 #include "lista.h"
 #include "pilha.h"
 #include "fila.h"
-#include "carta.h"
+#include "structs_auxiliares.h"
 
-/* FUNÇÕES PARA A PREPARAÇÃO DO JOGO */
+/* FUNÃ‡Ã•ES PARA A PREPARAÃ‡ÃƒO DO JOGO */
 
-// Cria uma nova carta com número especificado
+// Cria uma nova carta com nÃºmero especificado
 Carta criarCarta(int);
 
 // Inicializa um baralho preenchendo uma pilha com as 104 cartas do baralho e as embaralha
@@ -26,16 +26,16 @@ Fila** criarMesa();
 // Insere a primeira carta de cada fila da mesa
 int inserirCartasMesa(Fila**, Pilha*);
 
-// Configura as condições iniciais do jogo
+// Configura as condiÃ§Ãµes iniciais do jogo
 int prepararJogo(int, Pilha**, Lista***, Fila***, Lista***);
 
 
-/* FUNÇÕES PARA RODAR O JOGO */
+/* FUNÃ‡Ã•ES PARA RODAR O JOGO */
 
 // Retira as cartas de uma fila da mesa e as armazena em uma lista de cartas do jogador
 int puxarCartasFila(Fila**, Lista**, int, int, int);
 
-// Exibe o estado atual das filas e da mão do jogador
+// Exibe o estado atual das filas e da mÃ£o do jogador
 void exibirMesa(Fila **, Lista **, Lista **, Lista*);
 
 // Joga o turno de cada jogador
@@ -44,19 +44,19 @@ void jogarTurno(int, Lista **, Lista *);
 // Insere na mesa as cartas jogadas naquele turno
 int inserirMesa(int, Fila**, Lista**, Lista*, Lista**);
 
-// Função onde o jogo acontece
-int jogar(int, Pilha *, Lista **, Fila **, Lista **);
+// FunÃ§Ã£o onde o jogo acontece
+int jogar(int, Lista **, Fila **, Lista **);
 
-// Contabiliza a pontuação de um jogador
+// Contabiliza a pontuaÃ§Ã£o de um jogador
 int contarPontos(Lista *);
 
-// Contabiliza e revela a pontuação de cada jogador
+// Contabiliza e revela a pontuaÃ§Ã£o de cada jogador
 void fimJogo(int, Lista **);
 
 
-/* FUNÇÕES PARA DEPURAÇÃO */
+/* FUNÃ‡Ã•ES PARA DEPURAÃ‡ÃƒO */
 
-// Exibe as mãos de todos os jogadores para depuração
+// Exibe as mÃ£os de todos os jogadores para depuraÃ§Ã£o
 void exibirTudo(Lista **, int);
 
 #endif /* JOGO_H */

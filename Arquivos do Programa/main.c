@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 #include "lista.h"
 #include "pilha.h"
 #include "fila.h"
-#include "carta.h"
+#include "structs_auxiliares.h"
 #include "jogo.h"
 
 int main() {
@@ -19,25 +20,27 @@ int main() {
     // Define a quantidade de jogadores
     int qtd_jogadores;
     do{
-        printf("Defina quantos jogadores v„o participar desse jogo: ");
+        printf("Defina quantos jogadores v√£o participar desse jogo: ");
         scanf("%d", &qtd_jogadores);
+        while(getchar() != '\n');
+
         if(qtd_jogadores < 2 || qtd_jogadores > 10){
-            printf("Quantidade inv·lida. Insira um valor dentro do intervalo de 2 a 10 jogadores.\n\n");
+            printf("Quantidade inv√°lida. Insira um valor dentro do intervalo de 2 a 10 jogadores.\n\n");
         }
     }while(qtd_jogadores < 2 || qtd_jogadores > 10);
     printf("\n");
 
-    /* PREPARA«√O DO JOGO */
+    /* PREPARA√á√ÉO DO JOGO */
     if (!prepararJogo(qtd_jogadores, &baralho, &maosJogadores, &mesa, &colecaoCartasPuxadas)){
-        printf ("\nN„o foi possÌvel preparar o jogo corretamente.");
+        printf ("\nN√£o foi poss√≠vel preparar o jogo corretamente.");
         return 0;
     }
     exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
     // exibirTudo(maosJogadores, qtd_jogadores);
 
     /* JOGO */
-    // Armazena as cartas que foram puxadas (as de pontuaÁ„o) por cada jogador
-    jogar(qtd_jogadores, baralho, maosJogadores, mesa, colecaoCartasPuxadas);
+    // Armazena as cartas que foram puxadas (as de pontua√ß√£o) por cada jogador
+    jogar(qtd_jogadores, maosJogadores, mesa, colecaoCartasPuxadas);
 
     return 0;
 }

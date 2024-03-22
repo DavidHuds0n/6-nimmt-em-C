@@ -1,9 +1,9 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include "carta.h"
+#include "structs_auxiliares.h"
 
-typedef struct elementoLista *Lista;
+typedef struct elemento *Lista;
 
 Lista *criarLista();
 int inserirOrdenado(Lista*, Carta);

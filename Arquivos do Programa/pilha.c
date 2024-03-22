@@ -1,15 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+#include <time.h>
 #include "pilha.h"
-#include "carta.h"
+#include "structs_auxiliares.h"
 
-struct elementoPilha {
-    struct carta dados;
-    struct elementoPilha *prox;
-};
-
-typedef struct elementoPilha Elemento;
+typedef struct elemento Elemento;
 
 Pilha *criarPilha(){
     Pilha *pilha = (Pilha*)malloc(sizeof(Pilha));
@@ -47,7 +42,7 @@ int removerPilha(Pilha *pilha, Carta *acessado) {
 }
 
 void embaralharPilha(Pilha *pilha){
-    // Inicializa a semente para a geração de números aleatórios
+    // Inicializa a semente para a geraÃ§Ã£o de nÃºmeros aleatÃ³rios
     srand(time(NULL));
 
     int random, cont;

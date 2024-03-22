@@ -9,6 +9,8 @@
 	"pilha.h"
 	"jogo.h"
 
+1711030532 
+
 1709077183 source:c:\users\vitor\desktop\pega em 6\fila.c
 	<stdio.h>
 	<stdlib.h>
@@ -197,4 +199,177 @@
 	<conio.h>
 	"pilha.h"
 	"carta.h"
+
+1710180282 source:c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"carta.h"
+
+1710180283 c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\fila.h
+	"carta.h"
+
+1709259450 c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\carta.h
+
+1710180410 source:c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\jogo.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<unistd.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1709409754 c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\lista.h
+	"carta.h"
+
+1710107047 c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\pilha.h
+	"carta.h"
+
+1710175614 c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\jogo.h
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+
+1710101920 source:c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"carta.h"
+
+1710175380 source:c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1710107056 source:c:\users\vitor\desktop\(11-03-24) trabalho de laed\trabalho de laed\arquivos do programa\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"carta.h"
+
+1710263273 source:c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\jogo.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<unistd.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1709409754 c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\lista.h
+	"carta.h"
+
+1709259450 c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\carta.h
+
+1710107047 c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\pilha.h
+	"carta.h"
+
+1711030532 c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\fila.h
+	"carta.h"
+
+1710175614 c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\jogo.h
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+
+1710101920 source:c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"carta.h"
+
+1710263273 source:c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"carta.h"
+	"jogo.h"
+
+1710107056 source:c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"pilha.h"
+	"carta.h"
+
+1711030532 source:c:\users\vitor\desktop\lab aed\final\trabalho de laed\arquivos do programa\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"carta.h"
+
+1711072391 source:/home/david/Downloads/Trabalho de LAED/Arquivos do Programa/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+	"structs_auxiliares.h"
+
+1711071475 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/lista.h
+	"structs_auxiliares.h"
+
+1709259450 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/carta.h
+
+1711077170 source:/home/david/Downloads/Trabalho de LAED/Arquivos do Programa/fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"structs_auxiliares.h"
+
+1711071485 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/fila.h
+	"structs_auxiliares.h"
+
+1711071458 source:/home/david/Downloads/Trabalho de LAED/Arquivos do Programa/main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<time.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"structs_auxiliares.h"
+	"jogo.h"
+
+1711072484 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/pilha.h
+	"structs_auxiliares.h"
+
+1711071556 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/jogo.h
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"structs_auxiliares.h"
+
+1711072467 source:/home/david/Downloads/Trabalho de LAED/Arquivos do Programa/pilha.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"pilha.h"
+	"structs_auxiliares.h"
+
+1711077793 source:/home/david/Downloads/Trabalho de LAED/Arquivos do Programa/jogo.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"lista.h"
+	"pilha.h"
+	"fila.h"
+	"structs_auxiliares.h"
+	"jogo.h"
+
+1711071000 /home/david/Downloads/Trabalho de LAED/Arquivos do Programa/structs_auxiliares.h
 

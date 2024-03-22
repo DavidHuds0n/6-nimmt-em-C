@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "carta.h": "c",
+        "lista.h": "c",
+        "stdio.h": "c",
+        "carta_&_elemento.h": "c",
+        "locale.h": "c",
+        "fila.h": "c",
+        "structs_auxiliares.h": "c"
+    }
+}

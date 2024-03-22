@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
-#include "carta.h"
+#include "structs_auxiliares.h"
 
+typedef struct elemento Elemento;
+
+struct fila {
+	struct elemento *inicio;
+	struct elemento *fim;
+};
 
 Fila* criarFila(){
     Fila *fila = (Fila*)malloc(sizeof(Fila));
@@ -50,11 +56,11 @@ int removerFila(Fila *fila, Carta *acessado){
 }
 
 int acessarFila(Fila *fila, Carta *acessado){
-    if (fila == NULL || fila->inicio == NULL){
+    if (fila == NULL || fila->fim == NULL){
          return 0;
     }
     else {
-        *acessado = fila->inicio->dados;
+        *acessado = fila->fim->dados;
         return 1;
     }
 }
@@ -75,7 +81,7 @@ int exibirFila(Fila *fila) {
     printf("Numero: ");
     aux = fila->inicio;
     while (aux != NULL) {
-        printf("[%3d] ", aux->dados.numero); // Usando a formatação %6d para imprimir com 6 caracteres
+        printf("[%3d] ", aux->dados.numero);
         aux = aux->prox;
         if (aux == NULL) {
             break;
@@ -96,7 +102,6 @@ int exibirFila(Fila *fila) {
 
     return 1;
 }
-
 
 int tamanhoFila(Fila *fila){
     int tam = 0;

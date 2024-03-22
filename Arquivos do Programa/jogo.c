@@ -1,32 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <unistd.h>
 #include "lista.h"
 #include "pilha.h"
 #include "fila.h"
-#include "carta.h"
+#include "structs_auxiliares.h"
 #include "jogo.h"
 
 #define QTD_CARTAS 104  // Quantidade de cartas do baralho
-#define MAO_INIT 10     // Quantidade inicial de cartas na m„o de um jogador
+#define MAO_INIT 10     // Quantidade inicial de cartas na m√£o de um jogador
 #define QTD_FILAS 4     // Quantidade de filas na mesa
-#define MAX_ROUNDS 10   // Quantidade m·xima de partidas do jogo
-#define TICK 1          // Quantidade de segundos para o sleep
+#define MAX_ROUNDS 10   // Quantidade m√°xima de partidas do jogo
+#define TICK 1.5        // Quantidade de segundos para o sleep
 
-/* FUN«’ES PARA A PREPARA«√O DO JOGO */
+/* FUN√á√ïES PARA A PREPARA√á√ÉO DO JOGO */
 
 Carta criarCarta(int numero) {
     Carta novaCarta;
-    novaCarta.numero = numero; // Define o n˙mero da carta
+    novaCarta.numero = numero; // Define o n√∫mero da carta
     novaCarta.jogador = -1; // Define o jogador dono da carta
 
-    // Define a quantidade de cabeÁas de boi com base no n˙mero da carta
+    // Define a quantidade de cabe√ßas de boi com base no n√∫mero da carta
     novaCarta.bois = 1; // Toda carta tem pelo menos 1 boi
     if (numero % 10 == 5) novaCarta.bois += 1; // Terminadas em 5 tem 2 bois
-    if (numero % 10 == 0 && numero != 0) novaCarta.bois += 2; // M˙ltiplos de 10 tem 3 bois
-    if (numero >= 11 && numero <= 99 && numero % 11 == 0) novaCarta.bois += 4; // DÌgitos repetidos (exceto 0) tem 5 bois
-    if (numero == 55) novaCarta.bois += 1; // N˙mero 55 È um caso especial (termina em 5 e tem digitos repetidos), logo tem 7 bois
+    if (numero % 10 == 0 && numero != 0) novaCarta.bois += 2; // M√∫ltiplos de 10 tem 3 bois
+    if (numero >= 11 && numero <= 99 && numero % 11 == 0) novaCarta.bois += 4; // Digitos repetidos (exceto 0) tem 5 bois
+    if (numero == 55) novaCarta.bois += 1; // N√∫mero 55 √© um caso especial (termina em 5 e tem digitos repetidos), logo tem 7 bois
 
     return novaCarta;
 }
@@ -40,7 +39,7 @@ void inicializarBaralho(Pilha* baralho){
 }
 
 Lista** criarListaJogadores(int qtd_jogadores){
-    // Aloca memÛria para a lista de jogadores
+    // Aloca mem√≥ria para a lista de jogadores
     Lista** listaJogadores = (Lista**)malloc(sizeof(Lista*) * qtd_jogadores);
     if(listaJogadores == NULL) return NULL;
 
@@ -92,15 +91,15 @@ int prepararJogo (int qtd_jogadores, Pilha **baralho, Lista ***maosJogadores, Fi
     // Cria e inicializa o baralho
     *baralho = criarPilha();
     if (*baralho == NULL){
-        printf ("Erro ao alocar memÛria para o baralho.\n");
+        printf ("Erro ao alocar mem√≥ria para o baralho.\n");
         return 0;
     }
     inicializarBaralho(*baralho);
 
-    // Cria lista de m„os dos jogadores e distribui cartas
+    // Cria lista de m√£os dos jogadores e distribui cartas
     *maosJogadores = criarListaJogadores(qtd_jogadores);
     if(*maosJogadores == NULL){
-        printf("Erro ao alocar memÛria para lista de jogadores.\n");
+        printf("Erro ao alocar mem√≥ria para lista de jogadores.\n");
         return 0;
     }
     if(!distribuirCartasJogadores(*maosJogadores, *baralho, qtd_jogadores)){
@@ -111,7 +110,7 @@ int prepararJogo (int qtd_jogadores, Pilha **baralho, Lista ***maosJogadores, Fi
     // Cria e inicializa a mesa com cada fila contendo uma carta
     *mesa = criarMesa();
     if (*mesa == NULL){
-        printf("Erro ao alocar memÛria para mesa.\n");
+        printf("Erro ao alocar mem√≥ria para mesa.\n");
         return 0;
     }
     if(!inserirCartasMesa(*mesa, *baralho)){
@@ -122,25 +121,25 @@ int prepararJogo (int qtd_jogadores, Pilha **baralho, Lista ***maosJogadores, Fi
     // Cria lista para armazenar as cartas puxadas dos jogadores
     *colecaoCartasPuxadas = criarListaJogadores(qtd_jogadores);
     if(*colecaoCartasPuxadas == NULL){
-        printf("Erro ao alocar memÛria para coleÁ„o de cartas puxadas.\n");
+        printf("Erro ao alocar mem√≥ria para cole√ß√£o de cartas puxadas.\n");
         return 0;
     }
 
     return 1;
 }
 
-/* FUN«’ES PARA RODAR O JOGO */
+/* FUN√á√ïES PARA RODAR O JOGO */
 
 int puxarCartasFila(Fila** mesa, Lista** colecaoCartasPuxadas, int indiceJogador, int indiceFilaMesa, int qtd_jogadores){
-    // Verifica se o Ìndice do jogador est· dentro do intervalo v·lido
+    // Verifica se o √≠ndice do jogador est√° dentro do intervalo v√°lido
     if (indiceJogador < 0 || indiceJogador >= qtd_jogadores) {
-        printf("Õndice de jogador inv·lido.\n");
+        printf("√çndice de jogador inv√°lido.\n");
         return 0;
     }
 
-    // Verifica se o Ìndice da fila est· dentro do intervalo v·lido
+    // Verifica se o √≠ndice da fila est√° dentro do intervalo v√°lido
     if (indiceFilaMesa < 0 || indiceFilaMesa >= QTD_FILAS) {
-        printf("Õndice de fila inv·lido.\n");
+        printf("√çndice de fila inv√°lido.\n");
         return 0;
     }
 
@@ -152,7 +151,7 @@ int puxarCartasFila(Fila** mesa, Lista** colecaoCartasPuxadas, int indiceJogador
         return 0;
         }
         if (!inserirOrdenado(colecaoCartasPuxadas[indiceJogador], cartaRemovida)) {
-            printf("Erro ao inserir carta na coleÁ„o do jogador.\n");
+            printf("Erro ao inserir carta na cole√ß√£oo do jogador.\n");
             return 0;
         }
     }
@@ -164,12 +163,12 @@ void exibirMesa(Fila** mesa, Lista **maosJogadores, Lista **colecaoCartasPuxadas
     // Exibe as cartas jogadas no turno
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
     printf ("[CARTAS JOGADAS NESSE TURNO]\n");
-    if(!exibirFila(cartasTurno)){
+    if(!exibirLista(cartasTurno)){
         printf("(Nenhuma carta foi jogada ainda)\n");
     }
     printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
 
-    // Exibe as filas que est„o na mesa
+    // Exibe as filas que estÔøΩo na mesa
     for(int i = 0 ; i < 4 ; i++){
         printf("[FILA %d]\n", i+1);
         if(tamanhoFila(mesa[i]) != 0) exibirFila(mesa[i]);
@@ -179,32 +178,33 @@ void exibirMesa(Fila** mesa, Lista **maosJogadores, Lista **colecaoCartasPuxadas
     }
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
 
-    // Exibe a m„o do jogador
-    printf("[SUA M√O]\n");
+    // Exibe a mÔøΩo do jogador
+    printf("[SUA M√ÉO]\n");
     if(!exibirLista(maosJogadores[0])){
-        printf("(VocÍ jogou todas as suas cartas)\n");
+        printf("(Voc√™ jogou todas as suas cartas)\n");
     }
     printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
 
-    // Exibe a coleÁ„o do jogador
-    printf("[SUA COLE«√O]\n");
+    // Exibe a coleÔøΩÔøΩo do jogador
+    printf("[SUA COLE√á√ÉO]\n");
     if(!exibirLista(colecaoCartasPuxadas[0])){
-        printf("(VocÍ n„o pegou nenhuma carta)\n");
+        printf("(Voc√™ n√£o pegou nenhuma carta)\n");
     }
-    printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+    printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
 }
 
 void jogarTurno(int qtd_jogadores, Lista **maosJogadores, Lista *cartasTurno){
     int escolha;
     Carta guardar;
 
-    // Usu·rio escolhe a carta que vai jogar
+    // Usu√°rio escolhe a carta que vai jogar
     do {
-        printf ("\Digite o indice da carta que vocÍ quer jogar: ");
+        printf ("Digite o indice da carta que voc√™ quer jogar: ");
             scanf ("%d", &escolha);
+            while(getchar() != '\n');
             escolha--;
         if (escolha < 0 || escolha > tamanhoLista(maosJogadores[0])-1) {
-            printf ("Escolha um n˙mero v·lido.\n");
+            printf ("Escolha um n√∫mero v√°lido.\n");
         }
     } while (escolha < 0 || escolha > tamanhoLista(maosJogadores[0])-1);
 
@@ -213,7 +213,7 @@ void jogarTurno(int qtd_jogadores, Lista **maosJogadores, Lista *cartasTurno){
     removerIndice(maosJogadores[0], escolha);
     inserirOrdenado(cartasTurno, guardar);
 
-    // Os bots escolher„o uma carta aleatÛria
+    // Os bots escolher√£o uma carta aleat√≥ria
     for (int i = 1; i < qtd_jogadores; i++){
         escolha = rand()%(tamanhoLista(maosJogadores[i]));
 
@@ -230,12 +230,12 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
 
     for (int i = 0; i < qtd_jogadores; i++){ // Quantidade de cartas que foram jogadas naquele turno depende dos jogadores
 
-        int dif = 104; // A maior diferenÁa possÌvel È 103
-        int index = -1; // -1 representa que ainda n„o h· uma fileira para a carta ser inserida
+        int dif = 104; // A maior diferen√ßa poss√≠vel √© 103
+        int index = -1; // -1 representa que ainda n√£o h√° uma fileira para a carta ser inserida
 
-        for (int j = 0; j < QTD_FILAS; j++){ // Analisa o ˙ltimo elemento de cada fila para saber onde vai adicionar
-            guardarUltima = mesa[j]->fim->dados;
-            acessarIndice(cartasTurno, i, &guardarCarta);
+        for (int j = 0; j < QTD_FILAS; j++){ // Analisa o √∫ltimo elemento de cada fila para saber onde vai adicionar
+            if (!acessarFila(mesa[j], &guardarUltima)) return 0;
+            if (!acessarIndice(cartasTurno, i, &guardarCarta)) return 0;
             int newDif = (guardarCarta.numero) - (guardarUltima.numero);
             if (newDif < dif && newDif > 0){
                 dif = newDif;
@@ -243,24 +243,25 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
             }
         }
 
-        // Caso a carta jogada pelo player n„o possa ser inserida
+        // Caso a carta jogada pelo player n√£o possa ser inserida
         if (index == -1){
             int escolha;
             if (guardarCarta.jogador == 0){
                 do {
-                    printf ("\nA carta que vocÍ escolheu n„o pode ser inserida. Escolha uma fila de cartas para puxar: ");
+                    printf ("\nA carta que voc√™ escolheu n√£o pode ser inserida. Escolha uma fila de cartas para puxar: ");
                     scanf ("%d", &escolha);
+                    while(getchar() != '\n');
                 } while (escolha < 1 || escolha > 4);
                 escolha--;
                 if (!puxarCartasFila(mesa, colecaoCartasPuxadas, guardarCarta.jogador, escolha, qtd_jogadores)){
-                    printf ("N„o foi possÌvel inserir a carta.");
+                    printf ("N√£o foi poss√≠vel inserir a carta.");
                     return 0;
                 }
             }
             else {
                 escolha = rand()%4;
                 if (!puxarCartasFila(mesa, colecaoCartasPuxadas, guardarCarta.jogador, escolha, qtd_jogadores)){
-                    printf ("N„o foi possÌvel escolher essa fileira.");
+                    printf ("N√£o foi poss√≠vel escolher essa fileira.");
                     return 0;
                 }
             }
@@ -269,7 +270,7 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
             exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
             sleep(TICK);
             if (!inserirFila(mesa[escolha], guardarCarta)){
-                printf ("N„o foi possÌvel inserir a carta.");
+                printf ("N√£o foi poss√≠vel inserir a carta.");
                 return 0;
             }
         }
@@ -277,14 +278,14 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
         // Caso o jogador seja obrigado a inserir uma carta numa fila de tamanho 5
         else if (tamanhoFila(mesa[index]) == 5){
             if (!puxarCartasFila(mesa, colecaoCartasPuxadas, guardarCarta.jogador, index, qtd_jogadores)){
-                printf ("Erro ao pegar a coleÁ„o de cartas.");
+                printf ("Erro ao pegar a cole√ß√£o de cartas.");
             }
             sleep(TICK);
             system("cls");
             exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
             sleep(TICK);
             if (!inserirFila(mesa[index], guardarCarta)){
-                printf ("N„o foi possÌvel inserir a carta.");
+                printf ("N√£o foi poss√≠vel inserir a carta.");
                 return 0;
             }
         }
@@ -301,13 +302,13 @@ int inserirMesa(int qtd_jogadores, Fila **mesa, Lista **colecaoCartasPuxadas, Li
     return 1;
 }
 
-int jogar(int qtd_jogadores, Pilha *baralho, Lista **maosJogadores, Fila **mesa, Lista **colecaoCartasPuxadas){
+int jogar(int qtd_jogadores, Lista **maosJogadores, Fila **mesa, Lista **colecaoCartasPuxadas){
 
-    for (int i = 0; i < MAX_ROUNDS; i++){ // N˙mero de rodadas atÈ acabar a m„o de todos os jogadores
-        // Cria a fila que vai conter as cartas que ser„o jogadas nesse turno:
+    for (int i = 0; i < MAX_ROUNDS; i++){ // N√∫mero de rodadas at√© acabar a m√£o de todos os jogadores
+        // Cria a fila que vai conter as cartas que ser√£o jogadas nesse turno:
         Lista *cartasTurno = criarLista();
             if (cartasTurno == NULL){
-                printf ("Erro ao alocar memÛria para as cartas jogadas em cada turno.\n");
+                printf ("Erro ao alocar mem√≥ria para as cartas jogadas em cada turno.\n");
                 return 0;
             }
 
@@ -317,7 +318,7 @@ int jogar(int qtd_jogadores, Pilha *baralho, Lista **maosJogadores, Fila **mesa,
         if (!inserirMesa(qtd_jogadores, mesa, colecaoCartasPuxadas, cartasTurno, maosJogadores)) return 0;
 
         printf ("\n");
-        exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
+        // exibirMesa(mesa, maosJogadores, colecaoCartasPuxadas, cartasTurno);
         // exibirTudo (maosJogadores, qtd_jogadores);
 
         // Libera as cartas do turno para que novas sejam criadas e utilizada
@@ -326,6 +327,8 @@ int jogar(int qtd_jogadores, Pilha *baralho, Lista **maosJogadores, Fila **mesa,
     }
 
     fimJogo(qtd_jogadores, colecaoCartasPuxadas);
+
+    return 1;
 }
 
 int contarPontos (Lista *cartasPuxadas){
@@ -342,20 +345,20 @@ void fimJogo (int qtd_jogadores, Lista **colecaoCartasPuxadas){
     system("cls");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
     for (int i = 0; i < qtd_jogadores; i++){
-        printf ("[COLE«√O DO JOGADOR %d]\n", (i + 1));
+        printf ("[COLE√á√ÉO DO JOGADOR %d]\n", (i + 1));
         if (!exibirLista(colecaoCartasPuxadas[i])){
-            printf ("(N„o pegou nenhuma carta)\n");
+            printf ("(N√£o pegou nenhuma carta)\n");
         }
-        printf ("\nSua pontuaÁ„o final È %d.\n", contarPontos(colecaoCartasPuxadas[i]));
+        printf ("\nSua pontua√ß√£o final: %d.\n", contarPontos(colecaoCartasPuxadas[i]));
         printf("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
     }
 }
 
-/* FUN«’ES PARA DEPURA«√O */
+/* FUN√á√ïES PARA DEPURA√á√ÉO */
 
 void exibirTudo(Lista **maosJogadores, int qtd_jogadores) {
     for(int i = 0 ; i < qtd_jogadores ; i++){
-        printf("[M√O DO JOGADOR %d]\n", i+1);
+        printf("[M√ÉO DO JOGADOR %d]\n", i+1);
         exibirLista(maosJogadores[i]);
         printf("\n\n");
     }

@@ -1,19 +1,7 @@
 #ifndef FILA_H
 #define FILA_H
 
-#include "carta.h"
-
-// PERGUNTAR PRA ROBERTO SE ISSO PODE:
-typedef struct elementoFila {
-    struct carta dados;
-    struct elemento *prox;
-} Elemento;
-
-struct fila {
-	struct elementoFila *inicio;
-	struct elementoFila *fim;
-};
-///////////////////////////////////////
+#include "structs_auxiliares.h"
 
 typedef struct fila Fila;
 
