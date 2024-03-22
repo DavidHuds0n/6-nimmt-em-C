@@ -4,3 +4,4 @@ O propósito desse arquivo é listar as mudanças que fiz em dado commit do prog
 -> "carta.h" foi alterado para "structs_auxiliares.h" e agora contém a estrutura de um elemento genérico para todos os TADs do programa, além da estrutura da carta
 -> Ajustes gerais foram feitos na impressão de informações no terminal
 -> Corrigidos erros de sintaxe pelo código-fonte como um todo
+-> O programa agora possui uma versão para rodar como devido tanto em Linux quanto em Windows por conta das diferenças na chamada da função "system()" para limpar o terminal
